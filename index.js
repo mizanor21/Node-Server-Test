@@ -34,3 +34,5 @@ app.get("/users", (req, res) => {
 app.listen(port, () => {
   console.log(`Simple node server running on port ${port}`);
 });
+
+module.exports = app;
