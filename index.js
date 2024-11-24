@@ -48,18 +48,6 @@ app.get("/users", async (req, res) => {
   }
 });
 
-// POST new user to the database
-app.post("/users", async (req, res) => {
-  try {
-    const newUser = req.body; // Get user data from request body
-    const result = await usersCollection.insertOne(newUser); // Insert user into database
-    res.status(201).send(result.ops[0]); // Respond with the created user
-  } catch (error) {
-    console.error("Error creating user:", error);
-    res.status(400).send({ error: "Bad request" });
-  }
-});
-
 // Start the server
 app.listen(port, () => {
   console.log(`Simple node server running on port ${port}`);
