@@ -40,7 +40,10 @@ app.get("/", (req, res) => {
 // GET users from the database
 app.get("/users", async (req, res) => {
   try {
-    const users = await usersCollection.find({}).toArray(); // Fetch all users
+    if (!usersCollection) {
+      throw new Error("usersCollection is not initialized");
+    }
+    const users = await usersCollection.find({}).toArray();
     res.send(users);
   } catch (error) {
     console.error("Error fetching users:", error);
